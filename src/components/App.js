@@ -6,8 +6,18 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Timer time={10} autostart={true} step={2} />
-        <Timer time={30} autostart={false} step={2} />
+        <Timer
+          time={8}
+          autostart={true}
+          step={2}
+          onTick={(time) => console.log("Осталось времени: " + time)}
+        />
+        <Timer
+          time={300}
+          autostart={false}
+          step={1}
+          onTick={(time) => console.log("Осталось времени: " + time)}
+        />
       </div>
     );
   }

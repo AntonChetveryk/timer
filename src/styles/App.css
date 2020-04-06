@@ -1,0 +1,17 @@
+.download {
+  height: 30px;
+  background: aqua;
+}
+
+.timer-container {
+  margin-top: 50px;
+  background: yellow;
+  padding: 20px;
+}
+
+button {
+  background: yellowgreen;
+  border: none;
+  border-radius: 2px;
+  color: white;
+}

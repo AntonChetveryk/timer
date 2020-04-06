@@ -19,14 +19,13 @@ class Timer extends React.Component {
   };
 
   startTimer = () => {
-    const { step } = this.props;
-    const { time } = this.state;
+    const { step, onTick } = this.props;
     this.interval = setInterval(() => {
-      console.log(time);
-      if (time > 0) {
+      if (this.state.time > 0) {
         this.setState((state) => {
           return { time: state.time - step };
         });
+        onTick(this.state.time);
       }
     }, step * 1000);
   };
@@ -47,6 +46,7 @@ class Timer extends React.Component {
           {isActive ? "Stop" : "Start"}
         </button>
         <p>{time}</p>
+        <div className="download" style={{ width: `${time}px` }}></div>
       </div>
     );
   }
