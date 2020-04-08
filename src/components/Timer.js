@@ -12,29 +12,28 @@ class Timer extends React.Component {
     if (isActive) this.startTimer();
   }
 
-  setActive = (callback) => {
-    this.setState((state) => {
-      return { isActive: !state.isActive };
-    }, callback);
-  };
-
   startTimer = () => {
     const { step, onTick } = this.props;
     this.interval = setInterval(() => {
-      if (this.state.time > 0) {
+      const { time } = this.state;
+      if (time > 0) {
         this.setState((state) => {
           return { time: state.time - step };
         });
-        onTick(this.state.time);
+        onTick(time);
       }
     }, step * 1000);
   };
 
   switchTimer = (e) => {
     e.preventDefault();
-    const { isActive } = this.state;
-    this.setActive(() =>
-      isActive ? clearInterval(this.interval) : this.startTimer()
+    this.setState(
+      (state) => {
+        return { isActive: !state.isActive };
+      },
+      () => {
+        this.state.isActive ? this.startTimer() : clearInterval(this.interval);
+      }
     );
   };
 
